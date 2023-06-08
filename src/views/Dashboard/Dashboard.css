@@ -1,0 +1,102 @@
+.dashboard {
+	width: 99%;
+	position: absolute;
+	top: 20px;
+	display: flex;
+	flex-direction: column;
+	justify-content: start;
+}
+
+.dash-header {
+	width: 80%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin: 20px auto;
+}
+.dash-header > h1 {
+	box-sizing: border-box;
+	font-size: 2.8rem;
+	color: var(--fg-color);
+	font-weight: 800;
+	padding: 5px 10px;
+}
+
+
+.dash-main {
+	width: 500px;
+	height: 400px;
+	margin: 100px auto;
+	color: var(--fg-color);
+}
+.dash-main .card {
+	width: 80%;
+	height: 80%;
+	margin: auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	margin-top: 20px;
+	box-sizing: border-box;
+}
+
+.card > h4 {
+	flex: 1;
+	border: 1px solid var(--fg-color);
+	font-size: 2.5rem;
+	font-weight: 700;
+	padding: 10px;
+	border-radius: 10px;
+}
+.card .pass-number h4{
+	flex: 2;
+	font-size: 10rem;
+	font-weight: 800;
+	color: var(--fg-color);
+}
+@media (max-width: 716px){
+	.dash-header {
+		flex-direction: column;
+		gap: 20px;
+	}
+	.dash-header > button { 
+		width: 180px;
+		height: 50px;
+	}
+	.dashboard {
+		left: 5%;
+	}
+	.dash-main {
+		width: 200px;
+		height: 220px;
+		margin-top: 20px;
+	}
+	p {
+		font-size: .8rem;
+		width: 20ch;
+	}
+	.dash-main .card{
+		width: 100px;
+		height: 100px;
+		border: none;
+	}
+	.card > h4{
+		font-size: 3rem;
+	}
+	.card .pass-number  h4{
+		font-size: 5rem;
+	}
+	.button {
+		display: none;
+	}
+}
+@media (min-width: 1000px) {
+	.dashboard {
+		left: 10%;
+		width: 80%
+	}
+	.pass-number  > h4{
+		font-size: 10rem;
+	}
+}

@@ -1,0 +1,42 @@
+.footer {
+	width: 80%;
+	margin: auto;
+	color: var(--fg-color);
+	position: absolute;
+	bottom: 1%;
+	left: 10%;
+	display: flex;
+	justify-content: space-around;
+	z-index: 10;
+}
+.footer ul li {
+	list-style: none;
+	display: inline-block;
+	margin: 0 1rem;
+}
+.footer ul li a {
+	color: var(--fg-color);
+	cursor: pointer;
+}
+
+.footer .icon {
+	animation: blink 10s infinite;
+}
+
+.footer .icon:hover {
+	width: 27px;
+	height: 27px;
+}
+
+@media (max-width: 750px){
+	.footer ul li {
+		margin: 0 2rem;
+	}
+	.footer {
+		left: 15%;
+	}
+	.footer {
+		flex-direction: column;
+		gap: 20px;
+	}
+}
