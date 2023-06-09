@@ -8,7 +8,6 @@ export const isAuthenticated = () => {
 	return new Promise((resolve, reject) => {
 		Axios.get(SERVER)
 			.then((response) => {
-				console.log(response.headers);
 				if (response.status === 200) {
 					resolve();
 				} else {

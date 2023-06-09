@@ -29,7 +29,6 @@ const Profile = () => {
 
 
 	const getUserInfo = () => {
-		Axios.defaults.withCredentials = true;
 		Axios.get(SERVER + 'user')
 			.then((response) => {
 				setId(response.data._id);
@@ -73,13 +72,11 @@ const Profile = () => {
 	}
 
 	const handleDeleteClick = () => {
-		console.log('we did not delete your account, this feature is comming.');
-		Axios.delete(SERVER + '/delete', {
+		Axios.delete(SERVER + 'delete', {
 			params: {
 				id: id
 			}
 		}).then(() => {
-			console.log('you fucked up');
 		}).catch((err) => {
 			if (err.response.status === 405) {
 				window.location.href = '/#/login';
