@@ -3,7 +3,8 @@ import { ToastContainer, toast } from "react-toastify";
 import Axios from 'axios';
 import './RmPassword.css';
 
-const SERVER = 'https://passwordmanager-l5wn.onrender.com/removePass';
+// const SERVER = 'https://passwordmanager-l5wn.onrender.com/removePass';
+const SERVER = 'https://safe-pass-backend.vercel.app/removePass';
 
 const RmPassword = () => {
 	const [website, setWebsite] = useState('');

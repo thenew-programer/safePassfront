@@ -7,7 +7,8 @@ import { ToastContainer } from 'react-toastify';
 import { notifyFailure, notifySuccess } from '../../utils/notifacations';
 
 
-const SERVER = "https://passwordmanager-l5wn.onrender.com/";
+// const SERVER = "https://passwordmanager-l5wn.onrender.com/";
+const SERVER = 'https://safe-pass-backend.vercel.app/';
 
 const MyPasswords = () => {
 

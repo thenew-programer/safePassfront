@@ -2,7 +2,8 @@ import Axios from 'axios';
 import React, { useState } from 'react';
 import './Login.css';
 
-const SERVER = 'https://passwordmanager-l5wn.onrender.com/login';
+// const SERVER = 'https://passwordmanager-l5wn.onrender.com/login';
+const SERVER = 'https://safe-pass-backend.vercel.app/login';
 
 const Login = () => {
 	const [email, setEmail] = useState('');

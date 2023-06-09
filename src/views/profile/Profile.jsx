@@ -5,7 +5,8 @@ import Axios from 'axios';
 import './profile.css';
 import { notifyFailure, notifyFieldFailure, notifySuccess } from '../../utils/notifacations';
 
-const SERVER = 'https://passwordmanager-l5wn.onrender.com/';
+// const SERVER = 'https://passwordmanager-l5wn.onrender.com/';
+const SERVER = 'https://safe-pass-backend.vercel.app/';
 
 
 

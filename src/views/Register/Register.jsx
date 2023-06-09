@@ -6,7 +6,8 @@ import {
 } from '../../utils/notifacations'
 import './Register.css';
 
-const SERVER = 'https://passwordmanager-l5wn.onrender.com/register';
+// const SERVER = 'https://passwordmanager-l5wn.onrender.com/register';
+const SERVER = 'https://safe-pass-backend.vercel.app/register';
 
 const Register = () => {
 
