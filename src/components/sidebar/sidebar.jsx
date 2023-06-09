@@ -11,7 +11,8 @@ import './sidebar.css';
 import Axios from 'axios';
 
 
-const SERVER = 'https://passwordmanager-l5wn.onrender.com/logout';
+// const SERVER = 'https://passwordmanager-l5wn.onrender.com/logout';
+const SERVER = 'https://safe-pass-backend.vercel.app/logout';
 
 
 
