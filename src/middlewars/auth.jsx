@@ -1,7 +1,7 @@
 import Axios from "axios";
 
 // const SERVER = 'https://passwordmanager-l5wn.onrender.com/auth';
-const SERVER = "https://safe-pass-backend.vercel.app/auth";
+const SERVER = 'https://safe-pass-backend.vercel.app/auth';
 
 export const isAuthenticated = () => {
 	Axios.defaults.withCredentials = true;
