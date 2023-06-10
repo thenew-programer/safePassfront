@@ -1,6 +1,6 @@
 import Axios from 'axios';
 import React, { useState } from 'react';
-import {useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import './Login.css';
 
 // const SERVER = 'https://passwordmanager-l5wn.onrender.com/login';
@@ -23,10 +23,10 @@ const Login = () => {
 		}).then((response) => {
 			if (response.status === 200) {
 				setErrorMsg('');
-				if (history.length === 1) {
+				if (History.length === 1) {
 					window.location.href = '/#/home';
 				} else {
-					history.back();
+					History.back();
 				}
 			} else {
 				setErrorMsg('Email or Password is incorrect.');
