@@ -19,7 +19,7 @@ const Sidebar = () => {
   Axios.defaults.withCredentials = true;
 
   const logout = () => {
-    window.location.href = "/#/login";
+    window.location.href = "/";
     Axios.get(SERVER)
       .then(() => {
         console.log("you logged out");
