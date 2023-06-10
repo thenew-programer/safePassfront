@@ -35,7 +35,7 @@ const Profile = () => {
 				if (err.response.status === 405) {
 					window.location.href = "/#/login";
 				} else {
-					notifyFailure("Failed requestion server, Please refresh the page");
+					notifyFailure("Failed, Please refresh the page");
 				}
 			});
 	};
@@ -44,11 +44,10 @@ const Profile = () => {
 		if (!newPass || !oldPass) {
 			notifyFieldFailure("Fill all the fields");
 		} else {
-			Axios.patch(SERVER + "update/" + id, {
-				body: {
-					oldPass: oldPass,
-					newPass: newPass,
-				},
+			Axios.patch(SERVER + "update", {
+				id: id,
+				oldPass: oldPass,
+				newPass: newPass
 			})
 				.then(() => {
 					setErrorMsg("");
@@ -68,15 +67,20 @@ const Profile = () => {
 
 
 	const handleDeleteClick = () => {
-		Axios.delete(SERVER + "delete/" + id)
-			.then(() => { })
-			.catch((err) => {
-				if (err.response.status === 405) {
-					window.location.href = "/#/login";
-				} else {
-					notifyFailure("Failed to delete your account, try again.");
-				}
-			});
+		Axios.delete(SERVER + "delete", {
+			data: {
+				id: id
+			}
+		}).then(() => {
+			console.log('deleted');
+			window.location.href = "/#/login";
+		}).catch((err) => {
+			if (err.response.status === 405) {
+				window.location.href = "/#/login";
+			} else {
+				notifyFailure("Failed to delete your account, try again.");
+			}
+		});
 	};
 
 

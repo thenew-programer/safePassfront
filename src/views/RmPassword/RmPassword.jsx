@@ -39,7 +39,7 @@ const RmPassword = () => {
 					.then(() => {
 						setTimeout(() => {
 							clear(document.getElementById("site"));
-							notifySuccess();
+							notifySuccess('Password removed successfully');
 						}, 800);
 						setTimeout(clear(document.getElementById("email")), 900);
 						setTimeout(clear(document.getElementById("pass")), 1000);
