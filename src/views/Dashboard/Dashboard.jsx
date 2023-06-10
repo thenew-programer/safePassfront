@@ -18,7 +18,6 @@ const Dashboard = () => {
 
 	const getpasswordCount = () => {
 		Axios.get(SERVER + 'getpasswordcount').then((response) => {
-			window.localStorage.setItem('pass-count', response.data);
 			setPasswordCount(+response.data);
 		}).catch((err) => {
 			if (err.response.status === 405) {

@@ -19,7 +19,7 @@ const RmPassword = () => {
 
 	const removePass = () => {
 		return new Promise((resolve, reject) => {
-			Axios.delete(SERVER, {
+			Axios.post(SERVER, {
 				email: email,
 				site: website,
 			})
