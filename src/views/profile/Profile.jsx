@@ -40,7 +40,6 @@ const Profile = () => {
       });
   };
 
-
   const handleResetClick = () => {
     if (!newPass || !oldPass) {
       notifyFieldFailure("Fill all the fields");
@@ -72,9 +71,9 @@ const Profile = () => {
         id: id,
       },
     })
-      .then(() => {
-        console.log("deleted");
-        window.location.href = "/#/login";
+      .then((response) => {
+        console.log(response.data);
+        window.location.href = "/";
       })
       .catch((err) => {
         if (err.response.status === 405) {
@@ -93,7 +92,7 @@ const Profile = () => {
           <label for="email" className="label-email">
             Email
           </label>
-          <input type="text" id="profile-email" value={email} />
+          <input type="text" id="profile-email" value={email} readOnly />
           <label htmlFor="oldpassword" className="label-old-pass">
             Old Password
           </label>

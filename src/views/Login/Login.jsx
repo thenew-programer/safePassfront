@@ -9,28 +9,17 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
+  Axios.defaults.withCredentials = true;
 
   const handleClick = () => {
-    Axios.defaults.withCredentials = true;
-    Axios.post(
-      SERVER,
-      {
-        email: email,
-        password: password,
-      },
-      {
-        withCredentials: true,
-        credentials: "include",
-      }
-    )
+    Axios.post(SERVER, {
+      email: email,
+      password: password,
+    })
       .then((response) => {
         if (response.status === 200) {
           setErrorMsg("");
-          if (window.history.length === 1) {
-            window.location.href = "/#/home";
-          } else {
-            window.history.back();
-          }
+          window.location.href = "/#/home";
         } else {
           setErrorMsg("Email or Password is incorrect.");
         }
