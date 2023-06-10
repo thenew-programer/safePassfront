@@ -1,6 +1,5 @@
 import Axios from 'axios';
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import './Login.css';
 
 // const SERVER = 'https://passwordmanager-l5wn.onrender.com/login';
@@ -10,7 +9,6 @@ const Login = () => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [errorMsg, setErrorMsg] = useState('');
-	const history = useHistory();
 
 	const handleClick = () => {
 		Axios.defaults.withCredentials = true;
