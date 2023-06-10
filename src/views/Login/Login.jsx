@@ -23,11 +23,7 @@ const Login = () => {
 		}).then((response) => {
 			if (response.status === 200) {
 				setErrorMsg('');
-				if (History.length === 1) {
-					window.location.href = '/#/home';
-				} else {
-					History.back();
-				}
+				window.location.href = '/#/home';
 			} else {
 				setErrorMsg('Email or Password is incorrect.');
 			}
