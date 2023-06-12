@@ -21,10 +21,14 @@ const Profile = () => {
   const [visible, setVisible] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
   const [isError, setIsError] = useState(false);
+  const [sudo, setSudo] = useState("");
+  const [theme, setTheme] = useState("white");
   Axios.defaults.withCredentials = true;
 
   useEffect(() => {
     getUserInfo();
+    const color = document.body.getAttribute("data-theme");
+    setTheme(color === "light" ? "black" : "white");
   }, []);
 
   const getUserInfo = () => {
@@ -68,114 +72,138 @@ const Profile = () => {
   };
 
   const handleDeleteClick = () => {
-    Axios.delete(SERVER + "delete", {
-      data: {
-        id: id,
-      },
-    })
-      .then((response) => {
-        console.log(response.data);
-        setIsClicked(false);
-        window.location.href = "/";
+    if (sudo !== "sudo delete my account") {
+      setIsError(true);
+    } else {
+      setIsError(false);
+      Axios.delete(SERVER + "delete", {
+        data: {
+          id: id,
+        },
       })
-      .catch((err) => {
-        if (err.response.status === 405) {
-          setIsClicked(false);
-          window.location.href = "/#/login";
-        } else {
+        .then((response) => {
+          console.log(response.data);
           setIsClicked(false);
           window.location.href = "/";
-        }
-      });
+        })
+        .catch((err) => {
+          if (err.response.status === 405) {
+            setIsClicked(false);
+            window.location.href = "/#/login";
+          } else {
+            setIsClicked(false);
+            window.location.href = "/";
+          }
+        });
+    }
   };
 
   return (
-    <div className="profile-container">
-      <div className="profile-wraper">
-        <div className="user-data">
-          <h4>Profile</h4>
-          <label for="email" className="label-email">
-            Email
-          </label>
-          <input type="text" id="profile-email" value={email} readOnly />
-          <label htmlFor="oldpassword" className="label-old-pass">
-            Old Password
-          </label>
-          <input
-            type={visible ? "text" : "password"}
-            id="oldpassword"
-            onChange={(e) => setOldPass(e.target.value)}
-          />
-          <div className="visibility-top" onClick={() => setVisible(!visible)}>
-            {visible ? (
-              <AiOutlineEyeInvisible size={20} />
-            ) : (
-              <AiOutlineEye size={20} />
-            )}
-          </div>
-          <label htmlFor="newpassword" className="label-new-pass">
-            New Password
-          </label>
-          <input
-            type={visible ? "text" : "password"}
-            id="newpassword"
-            onChange={(e) => setNewPass(e.target.value)}
-          />
-          <div
-            className="visibility-bottom"
-            onClick={() => setVisible(!visible)}
-          >
-            {visible ? (
-              <AiOutlineEyeInvisible size={20} />
-            ) : (
-              <AiOutlineEye size={20} />
-            )}
-          </div>
-          <p
-            style={{
-              color: "red",
-              fontSize: "0.824rem",
-              margin: "auto",
-              marginTop: 0,
-            }}
-          >
-            {errorMsg}
-          </p>
-          <button type="button" onClick={handleResetClick}>
-            Reset Password
-          </button>
-        </div>
-        <div className="delete-account">
-          <button
-            type="button"
-            onClick={() => {
-              setIsClicked(true);
-            }}
-          >
-            Delete Account
-          </button>
-        </div>
-        {isClicked ? (
-          <div delete-conf>
-            <label htmlFor="delete">
-              type <span className="sudo">sudo delete my account</span>.
+    <div className="div">
+      <div className="profile-container">
+        <div className="profile-wraper">
+          <div className="user-data">
+            <h4>Profile</h4>
+            <label for="email" className="label-email">
+              Email
+            </label>
+            <input type="text" id="profile-email" value={email} readOnly />
+            <label htmlFor="oldpassword" className="label-old-pass">
+              Old Password
             </label>
             <input
-              type="text"
-              id="delete"
-              minLength={22}
-              maxLength={22}
-              style={{ borderColor: isError ? "red" : "" }}
+              type={visible ? "text" : "password"}
+              id="oldpassword"
+              onChange={(e) => setOldPass(e.target.value)}
             />
-            <button type="submit" id="btn-delete" onClick={handleDeleteClick}>
-              Done
+            <div
+              className="visibility-top"
+              onClick={() => setVisible(!visible)}
+            >
+              {visible ? (
+                <AiOutlineEyeInvisible size={20} />
+              ) : (
+                <AiOutlineEye size={20} />
+              )}
+            </div>
+            <label htmlFor="newpassword" className="label-new-pass">
+              New Password
+            </label>
+            <input
+              type={visible ? "text" : "password"}
+              id="newpassword"
+              onChange={(e) => setNewPass(e.target.value)}
+            />
+            <div
+              className="visibility-bottom"
+              onClick={() => setVisible(!visible)}
+            >
+              {visible ? (
+                <AiOutlineEyeInvisible size={20} />
+              ) : (
+                <AiOutlineEye size={20} />
+              )}
+            </div>
+            <p
+              style={{
+                color: "red",
+                fontSize: "0.824rem",
+                margin: "auto",
+                marginTop: 0,
+              }}
+            >
+              {errorMsg}
+            </p>
+            <button type="button" onClick={handleResetClick}>
+              Reset Password
             </button>
           </div>
-        ) : (
-          setIsClicked(false)
-        )}
-        <ToastContainer />
+          <div className="delete-account">
+            <button
+              type="button"
+              onClick={() => {
+                setIsClicked(true);
+              }}
+            >
+              Delete Account
+            </button>
+          </div>
+          <ToastContainer />
+        </div>
       </div>
+      {isClicked && (
+        <div className="delete">
+          <div className="delete-conf">
+            <h1>Delete Account</h1>
+            <div className="verify-field">
+              <label htmlFor="delete">
+                To verify, type{" "}
+                <span className="sudo">sudo delete my account</span>.
+              </label>
+              <input
+                type="text"
+                id="delete"
+                minLength={22}
+                maxLength={22}
+                style={{ borderColor: isError ? "red" : { theme } }}
+                onChange={(e) => setSudo(e.target.value)}
+              />
+            </div>
+            <div className="buttons">
+              <button
+                type="button"
+                id="cancel"
+                onClick={() => setIsClicked(false)}
+              >
+                Cancel
+              </button>
+              <button type="submit" id="btn-delete" onClick={handleDeleteClick}>
+                Continue
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
