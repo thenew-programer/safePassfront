@@ -19,6 +19,8 @@ const Profile = () => {
   const [email, setEmail] = useState("");
   const [id, setId] = useState("");
   const [visible, setVisible] = useState(false);
+  const [isClicked, setIsClicked] = useState(false);
+  const [isError, setIsError] = useState(false);
   Axios.defaults.withCredentials = true;
 
   useEffect(() => {
@@ -73,13 +75,16 @@ const Profile = () => {
     })
       .then((response) => {
         console.log(response.data);
+        setIsClicked(false);
         window.location.href = "/";
       })
       .catch((err) => {
         if (err.response.status === 405) {
+          setIsClicked(false);
           window.location.href = "/#/login";
         } else {
-          notifyFailure("Failed to delete your account, try again.");
+          setIsClicked(false);
+          window.location.href = "/";
         }
       });
   };
@@ -141,10 +146,34 @@ const Profile = () => {
           </button>
         </div>
         <div className="delete-account">
-          <button type="button" onClick={handleDeleteClick}>
+          <button
+            type="button"
+            onClick={() => {
+              setIsClicked(true);
+            }}
+          >
             Delete Account
           </button>
         </div>
+        {isClicked ? (
+          <div delete-conf>
+            <label htmlFor="delete">
+              type <span className="sudo">sudo delete my account</span>.
+            </label>
+            <input
+              type="text"
+              id="delete"
+              minLength={22}
+              maxLength={22}
+              style={{ borderColor: isError ? "red" : "" }}
+            />
+            <button type="submit" id="btn-delete" onClick={handleDeleteClick}>
+              Done
+            </button>
+          </div>
+        ) : (
+          setIsClicked(false)
+        )}
         <ToastContainer />
       </div>
     </div>
