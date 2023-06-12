@@ -124,7 +124,7 @@ const MyPasswords = () => {
                   </button>
                 </CopyToClipboard>
                 <br />
-                <span className="label">Email-user</span>
+                <span className="label">Email</span>
                 <CopyToClipboard text={item.User}>
                   <button className="cp-btn btn-email" type="button">
                     <BiCopy size={20} />
@@ -132,7 +132,7 @@ const MyPasswords = () => {
                 </CopyToClipboard>
                 <span className="email-span">{item.User}</span>
                 <br />
-                <span className="label">pass</span>
+                <span className="label">password</span>
                 <CopyToClipboard text={item.pass}>
                   <button className="cp-btn btn-pass" type="button">
                     <BiCopy size={20} />

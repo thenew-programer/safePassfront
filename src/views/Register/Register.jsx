@@ -42,11 +42,9 @@ const Register = () => {
 					onChange={e => setUsername(e.target.value)} />
 				<label for="register-email">Email</label>
 				<input type="text" id="register-email"
-					placeholder='e.g. joe@example.com'
 					onChange={e => setEmail(e.target.value)} />
 				<label for="register-pass">Password</label>
 				<input type="password" id="register-pass"
-					placeholder='e.g. pass123'
 					onChange={e => setPassword(e.target.value)} />
 				<p style={{
 					color: 'red',
